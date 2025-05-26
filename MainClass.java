@@ -108,7 +108,7 @@ public class MainClass {
                         }
                         break;
 
-                    case 8:
+                    case 9:
                         JOptionPane.showMessageDialog(null, "Programa Finalizado!");
                         System.exit(0);
                         break;
