@@ -1,0 +1,48 @@
+import javax.swing.JOptionPane;
+
+public class MainClass {
+    public static void main(String[] args){
+        ListaExpa list = new ListaExpa();
+        int opcion = 0;
+        do {
+            try {
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+        "Bienvenidos a la Biblioteca Raskolnicov\n1. Agregar Id. Del libro\n2. Mostrar Inventario de Libros Disponibles\n3.Eliminar libro especifico\n9. Finalizar Sesion\nIndique una opcion:",
+          "Biblioteca Raskolnikov",
+                JOptionPane.PLAIN_MESSAGE));
+                 switch (opcion) {
+                    case 1:
+                        try {
+                            int idLibro = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el Id del libro:"));
+                            String nombreLibro = JOptionPane.showInputDialog(null, "Ingrese el nombre del libro:");
+                            // Agregar el libro a la lista
+                            list.addInicio(idLibro, nombreLibro);
+                        } catch (NumberFormatException n) {
+                            JOptionPane.showMessageDialog(null, "Error: " + n.getMessage());
+                        }
+                        break;
+                    
+                    case 2:
+                        // Mostrar inventario de libros disponibles
+                        list.ViewLibros();
+                        break;
+                    
+                    case 3:
+                        
+                        break;
+                    case 4:
+                        break;
+                    case 9:
+                        JOptionPane.showMessageDialog(null, "Programa Finalizado!");
+                        System.exit(0);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Programa Finalizado");
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en digitación: " + e.getMessage());
+            }
+        } while (opcion != 7);
+    }
+}
