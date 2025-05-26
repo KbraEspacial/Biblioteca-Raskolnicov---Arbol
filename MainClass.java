@@ -22,7 +22,7 @@ public class MainClass {
         JLabel etiquetaImagen = new JLabel(imagenIcono);
         panel.add(etiquetaImagen);
 
-        // Definiciones del panel para las opciones
+        // Definiciones del panel para las opciones del menu
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panel, menuPanel);
