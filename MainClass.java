@@ -55,7 +55,7 @@ public class MainClass {
 
                     case 3:
                         try {
-                            int idLibroEliminar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el Id del libro a eliminar:"));
+                            int idLibroEliminar = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el Id del libro a Suprimirlo:"));
                             boolean eliminado = arbolLibros.eliminarLibro(idLibroEliminar);
                             if (eliminado) {
                                 JOptionPane.showMessageDialog(null, "Libro eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -80,7 +80,7 @@ public class MainClass {
 
                     case 5:
                         String inventarioUsuarios = arbolUsuarios.getInventarioUsuarios();
-                        JOptionPane.showMessageDialog(null, inventarioUsuarios, "Inventario de Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, inventarioUsuarios, "Inventario Personal", JOptionPane.INFORMATION_MESSAGE);
                         break;
 
                     case 6:
