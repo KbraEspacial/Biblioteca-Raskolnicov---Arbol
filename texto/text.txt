@@ -1,48 +1,80 @@
 import javax.swing.JOptionPane;
 
 public class MainClass {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ListaExpa list = new ListaExpa();
-        int opcion = 0;
+        int opcion;
+
+        final int OPCION_AGREGAR = 1;
+        final int OPCION_MOSTRAR = 2;
+        final int OPCION_ELIMINAR = 3;
+        final int OPCION_SALIR = 9;
+
         do {
             try {
-                opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
-        "Bienvenidos a la Biblioteca Raskolnicov\n1. Agregar Id. Del libro\n2. Mostrar Inventario de Libros Disponibles\n3.Eliminar libro especifico\n9. Finalizar Sesion\nIndique una opcion:",
-          "Biblioteca Raskolnikov",
-                JOptionPane.PLAIN_MESSAGE));
-                 switch (opcion) {
-                    case 1:
-                        try {
-                            int idLibro = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el Id del libro:"));
-                            String nombreLibro = JOptionPane.showInputDialog(null, "Ingrese el nombre del libro:");
-                            // Agregar el libro a la lista
-                            list.addInicio(idLibro, nombreLibro);
-                        } catch (NumberFormatException n) {
-                            JOptionPane.showMessageDialog(null, "Error: " + n.getMessage());
-                        }
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(
+                        null,
+                        "📚 Bienvenidos a la Biblioteca Raskolnikov 📚\n\n"
+                                + "1. Agregar ID del libro\n"
+                                + "2. Mostrar inventario de libros\n"
+                                + "3. Eliminar libro específico\n"
+                                + "9. Finalizar sesión\n\n"
+                                + "Seleccione una opción:",
+                        "Menú Biblioteca",
+                        JOptionPane.PLAIN_MESSAGE));
+
+                switch (opcion) {
+                    case OPCION_AGREGAR:
+                        agregarLibro(list);
                         break;
-                    
-                    case 2:
-                        // Mostrar inventario de libros disponibles
+
+                    case OPCION_MOSTRAR:
                         list.ViewLibros();
                         break;
-                    
-                    case 3:
-                        
+
+                    case OPCION_ELIMINAR:
+                        eliminarLibro(list);
                         break;
-                    case 4:
+
+                    case OPCION_SALIR:
+                        JOptionPane.showMessageDialog(null, "¡Sesión finalizada! Hasta pronto.");
                         break;
-                    case 9:
-                        JOptionPane.showMessageDialog(null, "Programa Finalizado!");
-                        System.exit(0);
-                        break;
+
                     default:
-                        JOptionPane.showMessageDialog(null, "Programa Finalizado");
+                        JOptionPane.showMessageDialog(null, "⚠️ Opción no válida. Intente nuevamente.");
+                        break;
                 }
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error en digitación: " + e.getMessage());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "⚠️ Entrada inválida. Debe ingresar un número.");
+                opcion = -1; // para que no termine el programa
             }
-        } while (opcion != 7);
+        } while (opcion != OPCION_SALIR);
+    }
+
+    private static void agregarLibro(ListaExpa list) {
+        try {
+            int idLibro = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del libro:"));
+            String nombreLibro = JOptionPane.showInputDialog("Ingrese el nombre del libro:");
+            list.addInicio(idLibro, nombreLibro);
+            JOptionPane.showMessageDialog(null, "✅ Libro agregado correctamente.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "⚠️ ID inválido. Debe ingresar un número.");
+        }
+    }
+
+    private static void eliminarLibro(ListaExpa list) {
+        try {
+            int idEliminar = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del libro a eliminar:"));
+            boolean eliminado = list.eliminarLibroPorId(idEliminar);
+            if (eliminado) {
+                JOptionPane.showMessageDialog(null, "✅ Libro eliminado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "❌ Libro no encontrado.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "⚠️ ID inválido. Debe ingresar un número.");
+        }
     }
 }
+
