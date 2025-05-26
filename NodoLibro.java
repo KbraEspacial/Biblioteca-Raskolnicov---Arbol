@@ -1,17 +1,28 @@
+/**
+ * Clase que representa un nodo de un árbol binario para almacenar libros.
+ */
 public class NodoLibro {
+
     public int idLibro;
     public String nombreLibro;
-    public NodoLibro izquierda, derecha;
+    public NodoLibro izquierda;
+    public NodoLibro derecha;
     public boolean prestado;
 
-    // Constructor para crear un nuevo NodoLibro
+    /**
+     * Constructor para inicializar un nuevo nodo de libro.
+     *
+     * @param id     Identificador único del libro.
+     * @param nombre Nombre del libro.
+     */
     public NodoLibro(int id, String nombre) {
-        this.idLibro = id;
-        this.nombreLibro = nombre;
-        this.izquierda = null;
-        this.derecha = null;
-        this.prestado = false;
+        idLibro = id;
+        nombreLibro = nombre;
+        izquierda = null;
+        derecha = null;
+        prestado = false;
     }
 }
+
 
 
